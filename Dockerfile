@@ -9,6 +9,8 @@ RUN apt-get update -y \
      libasound2-dev libmxml-dev libgcrypt11-dev libavahi-client-dev zlib1g-dev \
      libevent-dev
 
+RUN apt-get install -y avahi-daemon libavahi-client3
+
 RUN apt-get install  -y \
 	libasound2-dev:armhf \
 	automake \
@@ -19,10 +21,13 @@ RUN apt-get install  -y \
 RUN git clone https://github.com/ejurgensen/forked-daapd.git /tmp/forked-daapd
 RUN cd /tmp/forked-daapd \
  && autoreconf -i \
- && ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+ && ./configure --prefix=/opt/forked-daapd --localstatedir=/var \
  && make \
  && make install \
  && rm -R -f /tmp/forked-daapd
 
+ADD startServices.sh /root/startServices.sh
+
 EXPOSE 3689
 
+CMD sh /root/startServices.sh
