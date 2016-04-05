@@ -82,14 +82,15 @@ RUN   apk add --update \
       && rm -R -f /tmp/* \
       && apk del \
         build-base \
-         libevent-dev \
-         libplist-dev \
-         alsa-lib-dev \
-         libgcrypt-dev \
-         confuse-dev \
-         gettext-dev \
-         avahi-dev sqlite-dev \ 
-         ffmpeg-dev \
+        autoconf automake \
+        libevent-dev \
+        libplist-dev \
+        alsa-lib-dev \
+        libgcrypt-dev \
+        confuse-dev \
+        gettext-dev \
+        avahi-dev sqlite-dev \ 
+        ffmpeg-dev \
         musl-dev libtool gperf openjdk7-jre-base \
         bsd-compat-headers
       
